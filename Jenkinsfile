@@ -8,11 +8,11 @@ pipeline {
         stage('Build SRC') { 
             steps {
                 sh '[ -d rpmbuild ] && rm -rf rpmbuild'
-                sh 'mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS} && pwd'
-                sh 'cd rpmbuild/BUILD/ && curl -LO https://github.com/apache/atlas/archive/refs/tags/release-2.1.0-rc3.tar.gz && pwd'
-                sh 'cd rpmbuild/BUILD/ && tar xfz * && rm release-2.1.0-rc3.tar.gz && pwd'
-                sh 'whoami'
-                sh "cd rpmbuild/BUILD/${UNZIP_DIR_NAME} && npm config set cache /home/builder/.npm && mvn clean install package -DskipTests -Drat.ignoreErrors=true && pwd"
+                sh 'mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}'
+                sh 'cd rpmbuild/BUILD/ && curl -LO https://github.com/apache/atlas/archive/refs/tags/release-2.1.0-rc3.tar.gz'
+                sh 'cd rpmbuild/BUILD/ && tar xfz * && rm release-2.1.0-rc3.tar.gz'
+                sh '[ -d /home/builder/.npm ] && rm -rf /home/builder/.npm && npm config set cache /home/builder/.npm'
+                sh "cd rpmbuild/BUILD/${UNZIP_DIR_NAME} && mvn clean install package -DskipTests -Drat.ignoreErrors=true"
             }
         }
     }
