@@ -7,11 +7,10 @@ pipeline {
     stages {
         stage('Build SRC') { 
             steps {
-                sh 'mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}'
-                sh 'pushd rpmbuild/BUILD/ && curl -LO https://github.com/apache/atlas/archive/refs/tags/release-2.1.0-rc3.tar.gz'
-                sh 'tar xfz * && rm release-2.1.0-rc3.tar.gz && popd'
-                sh "cd rpmbuild/BUILD/${UNZIP_DIR_NAME} && pwd"
-                sh 'mvn clean install package -DskipTests' 
+                sh 'mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS} && pwd'
+                sh 'cd rpmbuild/BUILD/ && curl -LO https://github.com/apache/atlas/archive/refs/tags/release-2.1.0-rc3.tar.gz && pwd'
+                sh 'cd rpmbuild/BUILD/ && tar xfz * && rm release-2.1.0-rc3.tar.gz && pwd'
+                sh "cd rpmbuild/BUILD/${UNZIP_DIR_NAME} && mvn clean install package -DskipTests && pwd"
             }
         }
     }
