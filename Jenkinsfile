@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Build SRC') { 
             steps {
-                sh 'ls'
-                sh 'cd rpmbuild/BUILD'
+                sh 'mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}'
+                sh 'cd rpmbuild/BUILD && pwd'
                 sh 'mvn clean install package -DskipTests' 
             }
         }
