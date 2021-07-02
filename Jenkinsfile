@@ -1,5 +1,9 @@
 pipeline {
-    agent { dockerfile true }
+    agent { dockerfile {
+        filename 'Dockerfile'
+        dir '/home/builder'
+        args '-u builder'
+    } }
     environment {
         def SRC_LINK = 'https://github.com/apache/atlas/archive/refs/tags/release-2.1.0-rc3.tar.gz'
         def UNZIP_DIR_NAME = 'atlas-release-2.1.0-rc3'
