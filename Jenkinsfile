@@ -1,7 +1,6 @@
 pipeline {
     agent { dockerfile {
         filename 'Dockerfile'
-        dir '/home/builder'
         args '-u builder'
     } }
     environment {
