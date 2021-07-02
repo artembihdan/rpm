@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build SRC') { 
             steps {
+                sh '[ -d rpmbuild ] && rm -rf rpmbuild'
                 sh 'mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS} && pwd'
                 sh 'cd rpmbuild/BUILD/ && curl -LO https://github.com/apache/atlas/archive/refs/tags/release-2.1.0-rc3.tar.gz && pwd'
                 sh 'cd rpmbuild/BUILD/ && tar xfz * && rm release-2.1.0-rc3.tar.gz && pwd'
