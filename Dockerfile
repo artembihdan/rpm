@@ -65,7 +65,8 @@ RUN yum install -y epel-release \
     diffutils \
     coreutils \
     rpmlint \
-    rpm-devel
+    rpm-devel \
+    wget
 
 # Set GCC 9 as the default C/C++ compiler
 RUN echo "source /opt/rh/devtoolset-9/enable" >> /etc/bashrc
